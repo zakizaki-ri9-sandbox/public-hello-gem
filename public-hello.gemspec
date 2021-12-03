@@ -6,5 +6,5 @@ Gem::Specification.new do |s|
   s.authors = ["zakizaki-ri9"]
   s.files = ["lib/public-hello.rb"]
   s.license = 'MIT'
-  s.metadata = { "github_repo" => "ssh://github.com/zakizaki-ri9-sandbox" }
+  s.metadata = { "github_repo" => "ssh://github.com/zakizaki-ri9-sandbox/public-hello-gem" }
 end
