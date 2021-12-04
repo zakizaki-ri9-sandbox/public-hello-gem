@@ -1,0 +1,28 @@
+
+name: Test
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@1
+        with:
+          ruby-version: '3'
+          bundler-cache: true
+      - name: Setup release credentials
+        run: |
+          mkdir -p $HOME/.gem
+          touch $HOME/.gem/credentials
+          chmod 600 $HOME/.gem/credentials
+          echo "---" >$HOME/.gem/credentials
+          echo ":github: Bearer ${GITHUB_TOKEN}" >> $HOME/.gem/credentials
+      - name: Build Gem and Push
+        run: |
+          export OWNER=$( echo ${{ github.repository }} | cut -d "/" -f 1 )
+          gem build *.gemspec
+          gem push --KEY github --host https://rubygems.pkg.github.com/${OWNER} *.gem
