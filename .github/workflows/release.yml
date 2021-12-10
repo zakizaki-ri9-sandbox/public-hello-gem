@@ -25,6 +25,5 @@ jobs:
           echo ":github: Bearer ${GITHUB_TOKEN}" >> $HOME/.gem/credentials
       - name: Build Gem and Push
         run: |
-          export OWNER=$( echo ${{ github.repository }} | cut -d "/" -f 1 )
           gem build *.gemspec
-          gem push --KEY github --host https://rubygems.pkg.github.com/${OWNER} *.gem
+          gem push --KEY github --host https://rubygems.pkg.github.com/zakizaki-ri9-sandbox *.gem
