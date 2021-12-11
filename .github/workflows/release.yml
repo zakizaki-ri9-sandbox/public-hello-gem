@@ -21,7 +21,8 @@ jobs:
           mkdir -p ~/.gem
           touch ~/.gem/credentials
           chmod 600 ~/.gem/credentials
-          echo ":github: Bearer ${GITHUB_TOKEN}" >> ~/.gem/credentials
+          echo ":github: Bearer aaa" >> ~/.gem/credentials
+          cat ~/.gem/credentials
       - name: Build Gem and Push
         run: |
           gem build *.gemspec
