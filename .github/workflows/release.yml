@@ -16,7 +16,7 @@ jobs:
           bundler-cache: true
       - name: Setup release credentials
         env:
-          GITHUB_TOKEN: ${secrets.PACKAGES_WRITE_TOKEN}
+          PACKAGES_WRITE_TOKEN: ${secrets.PACKAGES_WRITE_TOKEN}
         run: |
           mkdir -p $HOME/.gem
           touch $HOME/.gem/credentials
