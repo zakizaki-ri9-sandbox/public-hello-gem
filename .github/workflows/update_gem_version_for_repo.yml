@@ -18,6 +18,7 @@ jobs:
         with:
           ruby-version: '3'
           bundler-cache: true
+          working-directory: ./.github/update_gem_version_for_repo
       - name: Test
         run: |
             pwd
