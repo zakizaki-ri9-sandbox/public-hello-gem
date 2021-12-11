@@ -16,14 +16,14 @@ jobs:
           bundler-cache: true
       - name: Setup release credentials
         env:
-          GITHUB_TOKEN: ${secrets.GITHUB_TOKEN}
+          GITHUB_TOKEN: ${secrets.PACKAGES_WRITE_TOKEN}
         run: |
           mkdir -p $HOME/.gem
           touch $HOME/.gem/credentials
           chmod 600 $HOME/.gem/credentials
           echo "---" >$HOME/.gem/credentials
-          echo ":github: Bearer ${GITHUB_TOKEN}" >> $HOME/.gem/credentials
+          echo ":github: Bearer ${PACKAGES_WRITE_TOKEN}" >> $HOME/.gem/credentials
       - name: Build Gem and Push
         run: |
           gem build *.gemspec
-          gem push --KEY github --host https://rubygems.pkg.github.com/zakizaki-ri9-sandbox *.gem
+          gem push --key github --host https://rubygems.pkg.github.com/zakizaki-ri9-sandbox *.gem
