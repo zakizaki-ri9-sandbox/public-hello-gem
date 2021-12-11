@@ -20,6 +20,8 @@ jobs:
           bundler-cache: true
           working-directory: ./.github/update_gem_version_for_repo
       - name: Test
+        env:
+          GITHUB_TOKEN: ${secrets.GITHUB_TOKEN}
         run: |
             pwd
             bundle exec ruby main.rb
