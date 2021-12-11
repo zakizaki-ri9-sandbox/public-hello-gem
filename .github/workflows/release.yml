@@ -14,8 +14,15 @@ jobs:
         with:
           ruby-version: '3'
           bundler-cache: true
-      - name: Build and publish gem
-        uses: jstastny/publish-gem-to-github@master
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          owner: zakizaki-ri9-sandbox
+      - name: Setup release credentials
+        env:
+          GITHUB_TOKEN: ${secrets.GITHUB_TOKEN}
+        run: |
+          mkdir -p ~/.gem
+          touch ~/.gem/credentials
+          chmod 600 ~/.gem/credentials
+          echo ":github: Bearer ${GITHUB_TOKEN}" >> ~/.gem/credentials
+      - name: Build Gem and Push
+        run: |
+          gem build *.gemspec
+          gem push --key github --host "https://rubygems.pkg.github.com/zakizaki-ri9-sandbox" ./*.gem
