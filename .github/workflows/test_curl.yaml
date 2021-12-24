@@ -1,0 +1,16 @@
+
+name: Test
+
+on:
+  registry_package:
+    types: [published]
+
+jobs:
+  update_gem_version_for_repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        env:
+          GITHUB_TOKEN: ${secrets.PACKAGES_WRITE_TOKEN}
+        run: |
+            curl -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/zakizaki-ri9-sandbox/public-hello-gem/pulls
